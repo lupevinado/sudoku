@@ -53,14 +53,33 @@ public class Grille {
 			}
 			return est;
 		}
-		// méthode rapportant les erreurs 
-		public String erreur (int valeur, int col, int li){
-			if (estColonne(col,valeur) || estLigne(li, valeur) || estZone(col, li, valeur)){
-				return "placement impossible car l'une des règles n'est pas respectée";
-			}else{
-				return "placement possible"; 
-			}
+	
+		// méthode pour vérifier si une valeur k est valide
+    
+		public boolean estValide (int ligne, int colonne, int k) {
+			if (estColonne (colonne, k) == false && estLigne(ligne, k) == false && estZone(colonne, ligne, k) == false)
+			return true;
+			else 
+			    return false;
+
 		}
+    
+		    // méthode rapportant les erreurs 
+		    public String erreur (int valeur, int col, int li){
+			if (estValide(li, col, valeur) == false){
+			    return "placement impossible car l'une des règles n'est pas respectée";
+			}else{
+			    return "placement possible"; 
+			}
+		    }
+
+		    // méthode qui permet de vérifier si la cellule est vide
+		    public boolean estVide(int ligne, int colonne) {
+			if (tab[ligne][colonne] == 0)
+			    return true;
+			else
+			    return false;
+		    }
 		
 	}
 	
